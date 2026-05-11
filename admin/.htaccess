@@ -1,0 +1,15 @@
+Options -Indexes
+
+# Deny direct access to includes
+<FilesMatch "^(db|auth|functions|header|footer)\.php$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "DENY"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "no-referrer"
+</IfModule>
